@@ -1,0 +1,17 @@
+# NOTE: This template is used to test the build templates in 'Sphenic.Vsts.Pipeline.Template.Yaml'
+# and is NOT required in a typical, non-'Exemplar', repository.
+
+trigger: none
+
+name: 'PipelineTemplatePreview_$(BuildDefinitionName)_0.0.$(date:yyyyMMdd)$(rev:.r)'
+resources:
+  repositories:
+    - repository: templates
+      type: git
+      name: 'Sphenic.Development/Sphenic.Vsts.Pipeline.Template.Yaml'
+      ref: 'refs/tags/latest-pullrequest' # NOTE: 'latest-pullrequest' tag set by 'Sphenic.Vsts.Pipeline.Template.Yaml' build
+
+jobs:
+- template: 'src/Pipelines/Build/Template.Pipeline.Build.Go.Module.yml@templates'
+  parameters:
+    goModuleName: 'exemplar-module'
