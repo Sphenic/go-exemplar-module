@@ -15,3 +15,5 @@ jobs:
 - template: 'src/Pipelines/Build/Template.Pipeline.Build.Go.Module.yml@templates'
   parameters:
     goModuleName: 'exemplar-module'
+    skipPublish: true
+    skipTag: true
